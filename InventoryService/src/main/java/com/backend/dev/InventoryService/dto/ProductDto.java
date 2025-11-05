@@ -10,7 +10,7 @@ public class ProductDto {
 
     private String description;
 
-    private Double price;
+    private Double totalPrice;
 
     private Integer quantity; 
 }

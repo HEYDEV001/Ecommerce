@@ -1,5 +1,5 @@
 
-INSERT INTO product(name, price, quantity) VALUES
+INSERT INTO product(name, total_price, quantity) VALUES
     ('Wireless Bluetooth Headphones', 2499.99, 50),
     ('Smart LED TV 43 inch', 32999.00, 20),
     ('Gaming Mouse RGB', 1499.50, 75),

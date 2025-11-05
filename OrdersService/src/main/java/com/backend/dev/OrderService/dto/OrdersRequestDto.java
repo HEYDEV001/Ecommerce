@@ -9,5 +9,5 @@ import java.util.List;
 public class OrdersRequestDto {
     private Long id;
     private List<OrdersRequestItemDto> items;
-    private BigDecimal totalQuantity;
+    private BigDecimal totalPrice;
 }

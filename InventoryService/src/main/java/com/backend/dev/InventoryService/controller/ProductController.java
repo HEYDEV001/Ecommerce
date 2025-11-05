@@ -1,15 +1,15 @@
 package com.backend.dev.InventoryService.controller;
 
+import com.backend.dev.InventoryService.clients.OrderFeignClients;
+import com.backend.dev.InventoryService.dto.OrderRequestDto;
 import com.backend.dev.InventoryService.dto.ProductDto;
 import com.backend.dev.InventoryService.service.ProductService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestClient;
 
 import java.util.List;
 
@@ -19,6 +19,24 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
     private final ProductService productService;
+
+    private final DiscoveryClient discoveryClient;
+    private final RestClient restClient;
+    private final OrderFeignClients orderFeignClients;
+
+    @GetMapping("/fetch")
+    public String fetchFromOrdersService(){
+//        ServiceInstance orderService =  discoveryClient.getInstances("OrderService").get(0);
+//
+//        return restClient
+//                .get()
+//                .uri(orderService.getUri() + "/orders/core/helloOrders")
+//                .retrieve()
+//                .body(String.class);
+
+        return orderFeignClients.helloOrders();
+
+    }
 
     @GetMapping
     public ResponseEntity<List<ProductDto>> getAllInventory(){
@@ -31,5 +49,11 @@ public class ProductController {
     public ResponseEntity<ProductDto> getProductById(@PathVariable Long id){
         ProductDto productDto = productService.getProductById(id);
         return ResponseEntity.ok(productDto);
+    }
+
+
+    @PutMapping("/reduceStocks")
+    public Double reduceStocks(@RequestBody OrderRequestDto orderRequestDto) {
+        return productService.reduceStocks(orderRequestDto);
     }
 }
