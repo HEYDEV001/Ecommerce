@@ -19,9 +19,10 @@ public class OrdersController {
 
     private final OrdersService ordersService;
     private final InventoryOpenFeignClient inventoryOpenFeignClient;
+
     @GetMapping(path= "/helloOrders")
-    public ResponseEntity<String> helloOrders(){
-        return ResponseEntity.ok("Hello from orderService");
+    public ResponseEntity<String> helloOrders(@RequestHeader("X-user-id") Long UserId){
+        return ResponseEntity.ok("Hello from orderService with User Id : "+UserId);
     }
 
     @GetMapping

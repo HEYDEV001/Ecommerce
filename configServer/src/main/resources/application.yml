@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: configServer
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/HEYDEV001/Ecommerce-config-server
+          username: HEYDEV001
+          password: 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
+          default-label: master
+
+server:
+  port: 8888
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+

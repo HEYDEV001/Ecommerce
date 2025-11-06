@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="discoveryService" />
         <module name="ApiGateway" />
+        <module name="configServer" />
       </profile>
       <profile name="Annotation profile for OrderService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -27,6 +28,7 @@
       <module name="ApiGateway" options="-parameters" />
       <module name="InventoryService" options="-parameters" />
       <module name="OrdersService" options="-parameters" />
+      <module name="configServer" options="-parameters" />
       <module name="discoveryService" options="-parameters" />
     </option>
   </component>
