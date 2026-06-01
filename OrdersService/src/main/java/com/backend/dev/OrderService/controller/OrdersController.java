@@ -6,6 +6,8 @@ import com.backend.dev.OrderService.dto.OrdersRequestDto;
 import com.backend.dev.OrderService.service.OrdersService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,14 +17,18 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping(path ="/core")
+@RefreshScope
 public class OrdersController {
+
+    @Value("${my.variable}")
+    private String myVariable;
 
     private final OrdersService ordersService;
     private final InventoryOpenFeignClient inventoryOpenFeignClient;
 
     @GetMapping(path= "/helloOrders")
-    public ResponseEntity<String> helloOrders(@RequestHeader("X-user-id") Long UserId){
-        return ResponseEntity.ok("Hello from orderService with User Id : "+UserId);
+    public ResponseEntity<String> helloOrders(){
+        return ResponseEntity.ok("Hello from orderService with User  : "+myVariable);
     }
 
     @GetMapping

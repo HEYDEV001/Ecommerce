@@ -1,6 +1,12 @@
 spring:
   application:
     name: ApiGateway
-
   config:
-    import: configserver:http://localhost:8888
+     import: optional:configserver:http://config-server:8888
+jwt:
+  secretKey: dijashdias9udyas8duhasnd8as7dhasdn8as7dgsahbnd8sa7dgsahbd8as7dyvasbd8as7dgbas8d7sadvybas8d7bascyubckjdshcbsajdyt
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery-service:8761/eureka
